@@ -192,6 +192,12 @@ echo ""
 echo -e "${BLUE}Arquivos de backup foram criados com extensão .bak${NC}"
 echo -e "${BLUE}Você pode removê-los após verificar que tudo está funcionando corretamente.${NC}"
 
+# Remover o diretório .git para desassociar o projeto do repositório, se existir
+if [[ -d ".git" ]]; then
+    echo -e "${BLUE}Removendo diretório .git para desassociar do repositório...${NC}"
+    rm -rf .git && echo -e "  ${GREEN}✓ Diretório .git removido${NC}"
+fi
+
 # Remover este script após execução
 script_path="$(readlink -f "${BASH_SOURCE[0]:-$0}")"
 if [[ -n "$script_path" && -f "$script_path" ]]; then
