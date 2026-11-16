@@ -11,7 +11,7 @@ Este projeto é um template base para desenvolvimento de aplicações web usando
 ### Framework & Runtime
 - **PHP 8.5+** - Linguagem principal
 - **Symfony 7.4 (LTS)** - Framework web
-- **MySQL 8.0** - Banco de dados
+- **MySQL 9.7 (LTS)** - Banco de dados
 - **Redis** - Cache e filas
 - **Nginx** - Servidor web
 - **Docker & Docker Compose** - Containerização
@@ -98,8 +98,23 @@ O projeto utiliza os seguintes serviços Docker:
 - Proxy reverso para a aplicação PHP
 
 ### mysql
-- Banco de dados MySQL 8.0
+- Banco de dados MySQL 9.7 (LTS)
 - Dados persistidos em volume Docker
+
+> **Atualizando um volume existente do MySQL 8.0:** o MySQL só permite upgrade a partir da LTS anterior, então o 9.7 não abre dados do 8.0 diretamente (`Invalid MySQL server upgrade`). Passe antes pela 8.4:
+>
+> ```bash
+> docker compose stop mysql
+> # 1) altere temporariamente a imagem para mysql:8.4 no compose.yml
+> docker compose up -d mysql   # aguarde ficar healthy (upgrade 8.0 -> 8.4)
+> docker compose stop mysql
+> # 2) volte a imagem para mysql:9.7
+> docker compose up -d mysql   # upgrade 8.4 -> 9.7
+> ```
+>
+> Em ambiente de desenvolvimento, também é possível recriar o volume do zero com `docker compose down -v` (**apaga todos os dados**).
+>
+> Lembre-se também de atualizar o `serverVersion=9.7` no `DATABASE_URL` do seu `.env`.
 
 ### redis
 - Cache e sistema de filas
