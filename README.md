@@ -1,6 +1,6 @@
 # Skeleton Project
 
-Um skeleton (template) de projeto PHP moderno usando Symfony 8.1 com Docker, ferramentas de qualidade de código e ambiente de desenvolvimento completo.
+Um skeleton (template) de projeto PHP moderno usando Symfony 7.4 com Docker, ferramentas de qualidade de código e ambiente de desenvolvimento completo.
 
 ## 📋 Visão Geral
 
@@ -10,7 +10,7 @@ Este projeto é um template base para desenvolvimento de aplicações web usando
 
 ### Framework & Runtime
 - **PHP 8.5+** - Linguagem principal
-- **Symfony 8.1** - Framework web
+- **Symfony 7.4 (LTS)** - Framework web
 - **MySQL 8.0** - Banco de dados
 - **Redis** - Cache e filas
 - **Nginx** - Servidor web
