@@ -1,6 +1,6 @@
 # Skeleton Project
 
-Um skeleton (template) de projeto PHP moderno usando Symfony 7.3 com Docker, ferramentas de qualidade de código e ambiente de desenvolvimento completo.
+Um skeleton (template) de projeto PHP moderno usando Symfony 7.4 com Docker, ferramentas de qualidade de código e ambiente de desenvolvimento completo.
 
 ## 📋 Visão Geral
 
@@ -9,8 +9,8 @@ Este projeto é um template base para desenvolvimento de aplicações web usando
 ## 🛠 Stack Tecnológica
 
 ### Framework & Runtime
-- **PHP 8.2+** - Linguagem principal
-- **Symfony 7.3** - Framework web
+- **PHP 8.5+** - Linguagem principal
+- **Symfony 7.4 (LTS)** - Framework web
 - **MySQL 8.0** - Banco de dados
 - **Redis** - Cache e filas
 - **Nginx** - Servidor web
@@ -31,6 +31,21 @@ Este projeto é um template base para desenvolvimento de aplicações web usando
 - **PHPMD** - Detector de bagunça de código
 - **Doctrine Fixtures** - Dados de teste
 - **Symfony Web Profiler** - Debug e profiling
+
+### 📌 Política de Versões (Symfony LTS)
+
+Este skeleton utiliza **somente versões LTS (Long-Term Support) do Symfony**, atualmente a **7.4**, com correções de bugs até novembro de 2028 e de segurança até novembro de 2029.
+
+A versão é travada em dois pontos do `composer.json`:
+
+- `"symfony/*": "7.4.*"` em `require` e `require-dev`
+- `"extra.symfony.require": "7.4.*"`, que impede o Symfony Flex de instalar outra versão
+
+Ao atualizar dependências:
+
+- Use `cli/composer update` normalmente: apenas versões de patch da 7.4 serão instaladas.
+- **Não** migre para versões não-LTS (8.0, 8.1, 8.2...). A migração deve ocorrer apenas para a próxima LTS (**8.4**, prevista para novembro de 2027), em um PR dedicado.
+- Demais dependências (PHP, Doctrine, ferramentas de qualidade) podem seguir a última versão estável, desde que compatíveis com o Symfony LTS.
 
 ## 🚀 Instalação e Configuração
 
@@ -72,7 +87,7 @@ O projeto utiliza os seguintes serviços Docker:
 
 ### app
 - Container principal da aplicação PHP-FPM
-- Base: PHP 8.2-FPM com extensões necessárias
+- Base: PHP 8.5-FPM com extensões necessárias
 
 ### worker
 - Container para processamento de filas/workers

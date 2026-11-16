@@ -8,7 +8,7 @@ RUN npm install --pure-lockfile
 COPY --chown=www-data:www-data ./assets /var/www/html/assets
 COPY --chown=www-data:www-data ./tsconfig.json ./vite.config.js ./tailwind.config.js ./postcss.config.js /var/www/html/
 
-FROM php:8.2-fpm
+FROM php:8.5-fpm
 
 ENV TZ=America/Sao_Paulo
 
@@ -16,7 +16,7 @@ RUN apt update -y \
     && apt install -y zlib1g-dev g++ git libicu-dev libzip-dev supervisor \
     && docker-php-ext-configure zip \
     && docker-php-ext-configure pcntl --enable-pcntl \
-    && docker-php-ext-install intl opcache pdo pdo_mysql zip pcntl bcmath \
+    && docker-php-ext-install intl pdo pdo_mysql zip pcntl bcmath \
     && pecl install apcu redis \
     && docker-php-ext-enable apcu redis
 

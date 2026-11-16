@@ -12,6 +12,7 @@
 !/public/storage/.gitkeep
 /public/storage/*
 /vendor/
+/config/reference.php
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###

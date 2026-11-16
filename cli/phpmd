@@ -7,17 +7,13 @@ fi
 
 eval "$(./cli/get-git-files --php "$@")"
 
-FILES=$(echo $FILES | tr ' ' ',')
 if [ "$FILES" == "" ]; then
   echo "Nenhum arquivo para verificar !"
   exit 0
 fi
 
-# Substitua espaços por vírgulas
-FILES=${FILES// /,}
-
 config=phpmd.xml
 
-./bin/phpmd --minimumpriority 4 $FILES text $config | sed 's|/var/www/html/||g'
+./bin/phpmd analyze --minimum-priority 4 --ruleset $config --format text --no-progress $FILES | sed 's|/var/www/html/||g'
 
 exit ${PIPESTATUS[0]}
